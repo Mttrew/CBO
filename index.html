@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Регистрационный документ</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    padding: 20px;
+    font-family: "Courier New", monospace;
+
+    background:
+        radial-gradient(circle at 20% 20%, #3d4635 0, transparent 35%),
+        radial-gradient(circle at 80% 80%, #11150f 0, transparent 45%),
+        #20251d;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+/* ==========================================
+   ПАПКА
+========================================== */
+
+.folder {
+    position: relative;
+
+    width: min(920px, 96vw);
+    min-height: 730px;
+
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4c543f,
+            #30372c 50%,
+            #252a22
+        );
+
+    border-radius: 7px;
+
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.7),
+        inset 0 0 35px rgba(0,0,0,.35);
+
+    animation: folderIn .7s ease;
+}
+
+@keyframes folderIn {
+    from {
+        opacity: 0;
+        transform: scale(.94) translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ==========================================
+   СКРЕПКА
+========================================== */
+
+.clip {
+    position: absolute;
+
+    right: 35px;
+    top: -8px;
+
+    width: 72px;
+    height: 135px;
+
+    border: 5px solid #85857b;
+    border-bottom: 0;
+
+    border-radius: 35px 35px 0 0;
+
+    transform: rotate(5deg);
+
+    z-index: 20;
+
+    box-shadow:
+        inset 2px 0 #d0d0c7,
+        4px 5px 8px rgba(0,0,0,.35);
+}
+
+/* ==========================================
+   БУМАГА
+========================================== */
+
+.paper {
+    position: relative;
+
+    min-height: 685px;
+
+    padding: 43px 55px;
+
+    overflow: hidden;
+
+    color: #292b22;
+
+    background:
+        radial-gradient(
+            ellipse at 10% 90%,
+            rgba(70,55,30,.13),
+            transparent 25%
+        ),
+        radial-gradient(
+            ellipse at 90% 10%,
+            rgba(70,55,30,.1),
+            transparent 25%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(70,60,40,.025) 0,
+            rgba(70,60,40,.025) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        linear-gradient(
+            110deg,
+            #ded8be,
+            #c9c3a8
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.4),
+        inset 0 0 60px rgba(70,60,40,.14);
+}
+
+.paper::before {
+    content: "";
+
+    position: absolute;
+    inset: 12px;
+
+    border: 1px dashed rgba(50,50,35,.24);
+
+    pointer-events: none;
+}
+
+/* ==========================================
+   ШАПКА
+========================================== */
+
+.header {
+    position: relative;
+    z-index: 2;
+
+    padding-bottom: 18px;
+
+    border-bottom: 3px double #383b30;
+}
+
+.topline {
+    display: flex;
+    justify-content: space-between;
+
+    color: #55584a;
+    font-size: 11px;
+}
+
+.title {
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    margin-top: 8px;
+
+    text-align: center;
+
+    color: #5c5e50;
+
+    font-size: 12px;
+}
+
+/* ==========================================
+   СТАРАЯ ПЕЧАТЬ
+========================================== */
+
+.old-stamp {
+    position: absolute;
+
+    right: 50px;
+    top: 105px;
+
+    width: 135px;
+    height: 135px;
+
+    border: 5px solid #713b35;
+
+    border-radius: 50%;
+
+    color: #713b35;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    transform: rotate(12deg);
+
+    opacity: .58;
+}
+
+.old-stamp .star {
+    font-size: 25px;
+}
+
+/* ==========================================
+   МЕТА
+========================================== */
+
+.meta {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin: 20px 0;
+
+    font-size: 12px;
+}
+
+/* ==========================================
+   УВЕДОМЛЕНИЕ
+========================================== */
+
+.notice {
+    position: relative;
+    z-index: 2;
+
+    padding: 13px 16px;
+
+    margin-bottom: 22px;
+
+    border-left: 5px solid #4a543b;
+
+    background: rgba(70,80,55,.08);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* ==========================================
+   ТЕКСТ
+========================================== */
+
+.content {
+    position: relative;
+    z-index: 2;
+
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.content h2 {
+    font-size: 17px;
+
+    padding-bottom: 8px;
+
+    border-bottom: 1px solid #777866;
+}
+
+/* ==========================================
+   ПУНКТЫ
+========================================== */
+
+.rules {
+    margin-top: 18px;
+
+    border-top: 1px solid #777866;
+    border-bottom: 1px solid #777866;
+}
+
+.rule {
+    padding: 13px 5px;
+
+    border-bottom: 1px dotted #777866;
+}
+
+.rule:last-child {
+    border-bottom: 0;
+}
+
+.number {
+    color: #46533b;
+    font-weight: bold;
+}
+
+/* ==========================================
+   ПОДПИСЬ И ДАТА
+========================================== */
+
+.signatures {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 28px;
+
+    font-size: 12px;
+}
+
+.signature-block {
+    display: flex;
+    align-items: center;
+}
+
+.signature-area {
+    position: relative;
+
+    display: inline-flex;
+
+    width: 160px;
+    height: 38px;
+
+    margin-left: 7px;
+
+    overflow: hidden;
+
+    border-bottom: 1px solid #292b22;
+}
+
+#signature {
+    position: absolute;
+
+    left: 8px;
+    bottom: 0;
+
+    color: #25251f;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size: 29px;
+    font-style: italic;
+
+    opacity: 0;
+
+    white-space: nowrap;
+
+    transform:
+        translateX(-130px)
+        rotate(-7deg);
+}
+
+#signature.signing {
+    animation: signatureWrite 1.8s ease-out forwards;
+}
+
+@keyframes signatureWrite {
+
+    0% {
+        opacity: 0;
+
+        clip-path: inset(0 100% 0 0);
+
+        transform:
+            translateX(-130px)
+            rotate(-7deg);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    75% {
+        clip-path: inset(0 25% 0 0);
+    }
+
+    100% {
+        opacity: 1;
+
+        clip-path: inset(0 0 0 0);
+
+        transform:
+            translateX(0)
+            rotate(-7deg);
+    }
+}
+
+.date-area {
+    display: inline-flex;
+
+    width: 150px;
+    height: 28px;
+
+    margin-left: 7px;
+
+    overflow: hidden;
+
+    vertical-align: middle;
+
+    border-bottom: 1px solid #292b22;
+}
+
+#documentDate {
+    font-weight: bold;
+
+    opacity: 0;
+
+    transform: translateX(-100px);
+}
+
+#documentDate.date-writing {
+    animation: dateWrite 1s steps(12, end) forwards;
+}
+
+@keyframes dateWrite {
+
+    0% {
+        opacity: 0;
+
+        transform: translateX(-100px);
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================
+   КНОПКИ
+========================================== */
+
+.buttons-zone {
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+    height: 75px;
+
+    margin-top: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+}
+
+button {
+    padding: 13px 25px;
+
+    border: 2px solid #30352a;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#agree {
+    position: relative;
+
+    z-index: 20;
+
+    background: #46533b;
+    color: #eee9d3;
+
+    box-shadow: 3px 3px 0 #25291f;
+
+    transition: .15s;
+}
+
+#agree:hover {
+    transform: translateY(-2px);
+}
+
+#cancel {
+    position: absolute;
+
+    background: #713b35;
+    color: #eee8d3;
+
+    border-color: #43251f;
+
+    box-shadow: 3px 3px 0 #38211d;
+
+    transition:
+        left .08s ease,
+        top .08s ease,
+        transform .08s ease;
+}
+
+/* ==========================================
+   ТАЙМЕР
+========================================== */
+
+#counter {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    color: #676957;
+
+    font-size: 11px;
+}
+
+#time {
+    color: #713b35;
+
+    font-weight: bold;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 13px;
+    padding-top: 10px;
+
+    border-top: 1px solid #777866;
+
+    text-align: center;
+
+    font-size: 8px;
+
+    color: #777866;
+}
+
+/* ==========================================
+   ВТОРОЙ ЛИСТ
+========================================== */
+
+#result {
+    display: none;
+}
+
+.result-content {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+}
+
+.result-icon {
+    margin-top: 20px;
+
+    font-size: 60px;
+
+    animation: shake .45s infinite alternate;
+}
+
+@keyframes shake {
+    from {
+        transform: rotate(-4deg);
+    }
+
+    to {
+        transform: rotate(4deg);
+    }
+}
+
+.result-title {
+    margin-top: 10px;
+
+    color: #713b35;
+
+    font-size: 29px;
+    font-weight: bold;
+}
+
+/* ==========================================
+   ПЕЧАТЬ
+========================================== */
+
+.final-stamp {
+    width: 175px;
+    height: 175px;
+
+    margin: 25px auto;
+
+    border: 7px solid #8a302b;
+
+    border-radius: 50%;
+
+    color: #8a302b;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transform: rotate(-8deg);
+
+    opacity: 0;
+}
+
+.final-stamp.show-stamp {
+    animation:
+        stamp .55s cubic-bezier(.2,.9,.3,1)
+        forwards;
+}
+
+.final-stamp .check {
+    font-size: 42px;
+    line-height: 1;
+}
+
+@keyframes stamp {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(2.3)
+            rotate(-8deg);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            scale(.88)
+            rotate(-8deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(-8deg);
+    }
+}
+
+/* ==========================================
+   РЕЗУЛЬТАТ
+========================================== */
+
+.result-box {
+    max-width: 600px;
+
+    margin: 25px auto;
+
+    padding: 22px;
+
+    border: 2px solid #46533b;
+
+    background: rgba(70,83,59,.08);
+
+    line-height: 1.7;
+}
+
+.result-date {
+    color: #34382b;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.result-time {
+    color: #55584a;
+
+    font-size: 16px;
+}
+
+.result-note {
+    margin-top: 20px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #777866;
+
+    color: #656757;
+
+    font-size: 11px;
+}
+
+.back {
+    margin-top: 10px;
+
+    background: #46533b;
+
+    color: white;
+}
+
+/* ==========================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+========================================== */
+
+@media(max-width:700px) {
+
+    body {
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .folder {
+        padding: 10px;
+    }
+
+    .paper {
+        padding: 30px 22px;
+    }
+
+    .title {
+        max-width: 65%;
+        font-size: 21px;
+    }
+
+    .old-stamp {
+        width: 100px;
+        height: 100px;
+
+        right: 20px;
+        top: 100px;
+
+        font-size: 8px;
+    }
+
+    .old-stamp .star {
+        font-size: 18px;
+    }
+
+    .signatures {
+        display: block;
+        line-height: 3;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="folder">
+
+<div class="clip"></div>
+
+
+<!-- ======================================
+     ПЕРВЫЙ ЛИСТ
+====================================== -->
+
+<div class="paper" id="main">
+
+    <div class="header">
+
+        <div class="topline">
+            <span>АРХИВ / КОПИЯ</span>
+            <span>ЛИСТ 1 / 1</span>
+        </div>
+
+        <div class="title">
+            РЕГИСТРАЦИОННЫЙ ДОКУМЕНТ
+        </div>
+
+        <div class="subtitle">
+            СЛУЖЕБНЫЙ БЛАНК
+        </div>
+
+    </div>
+
+
+    <div class="old-stamp">
+
+        <div>
+
+            <div class="star">
+                ★
+            </div>
+
+            РЕГИСТРАЦИЯ
+
+            <br>
+
+            № 130826
+
+            <br>
+
+            АРХИВ
+
+        </div>
+
+    </div>
+
+
+    <div class="meta">
+
+        <span>
+            № DOC-130826
+        </span>
+
+        <span>
+            Экземпляр № 01
+        </span>
+
+    </div>
+
+
+    <div class="notice">
+
+        <b>УВЕДОМЛЕНИЕ</b>
+
+        <br><br>
+
+        Перед подтверждением внимательно
+        ознакомьтесь с приведёнными ниже
+        условиями регистрации.
+
+    </div>
+
+
+    <div class="content">
+
+        <h2>
+            ЗАЯВЛЕНИЕ
+        </h2>
+
+        <p>
+            Пользователь подтверждает
+            ознакомление с содержанием
+            настоящей страницы.
+        </p>
+
+
+        <div class="rules">
+
+            <div class="rule">
+
+                <span class="number">
+                    [01]
+                </span>
+
+                Подтверждение производится
+                нажатием соответствующей кнопки.
+
+            </div>
+
+
+            <div class="rule">
+
+                <span class="number">
+                    [02]
+                </span>
+
+                Данные регистрации фиксируются
+                текущими датой и временем.
+
+            </div>
+
+
+            <div class="rule">
+
+                <span class="number">
+                    [03]
+                </span>
+
+                После подтверждения формируется
+                регистрационная печать.
+
+            </div>
+
+
+            <div class="rule">
+
+                <span class="number">
+                    [04]
+                </span>
+
+                Регистрация действует только
+                в рамках данной страницы.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ПОДПИСЬ + ДАТА -->
+
+    <div class="signatures">
+
+        <div class="signature-block">
+
+            ПОДПИСЬ:
+
+            <span class="signature-area">
+
+                <span id="signature">
+                    Иванов
+                </span>
+
+            </span>
+
+        </div>
+
+
+        <div>
+
+            ДАТА:
+
+            <span class="date-area">
+
+                <span id="documentDate">
+                    --.--.----
+                </span>
+
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- КНОПКИ -->
+
+    <div
+        class="buttons-zone"
+        id="buttonZone"
+    >
+
+        <button id="agree">
+            ✓ ПОДТВЕРДИТЬ
+        </button>
+
+        <button id="cancel">
+            ✕ ОТКАЗАТЬСЯ
+        </button>
+
+    </div>
+
+
+    <!-- ТАЙМЕР -->
+
+    <div id="counter">
+
+        Автоматическое завершение через:
+
+        <span id="time">
+            30
+        </span>
+
+        сек.
+
+    </div>
+
+
+    <div class="footer">
+        Демонстрационная веб-страница
+    </div>
+
+</div>
+
+
+<!-- ======================================
+     ВТОРОЙ ЛИСТ
+====================================== -->
+
+<div
+    class="paper"
+    id="result"
+>
+
+    <div class="result-content">
+
+        <div class="result-icon">
+            ✓
+        </div>
+
+
+        <div class="result-title">
+            РЕГИСТРАЦИЯ ЗАВЕРШЕНА
+        </div>
+
+
+        <!-- ПЕЧАТЬ -->
+
+        <div
+            class="final-stamp"
+            id="finalStamp"
+        >
+
+            <div class="check">
+                ✓
+            </div>
+
+            ЗАРЕГИСТРИРОВАНО
+
+            <br>
+
+            <small>
+                № DOC-130826
+            </small>
+
+        </div>
+
+
+        <div class="result-box">
+
+            <b>
+                СТАТУС
+            </b>
+
+            <br>
+
+            ПОДТВЕРЖДЕНО
+
+            <br><br>
+
+
+            <b>
+                ДАТА РЕГИСТРАЦИИ
+            </b>
+
+            <br>
+
+            <span
+                class="result-date"
+                id="realDate"
+            >
+                --.--.----
+            </span>
+
+
+            <br><br>
+
+
+            <b>
+                ВРЕМЯ РЕГИСТРАЦИИ
+            </b>
+
+            <br>
+
+            <span
+                class="result-time"
+                id="realTime"
+            >
+                --:--:--
+            </span>
+
+
+            <div class="result-note">
+
+                Регистрационная отметка создана
+                автоматически текущей датой
+                и временем устройства.
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="back"
+            onclick="location.reload()"
+        >
+            ↻ ВЕРНУТЬСЯ
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+        Демонстрационная веб-страница
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   ЭЛЕМЕНТЫ
+========================================== */
+
+const agree =
+    document.getElementById("agree");
+
+const cancel =
+    document.getElementById("cancel");
+
+const main =
+    document.getElementById("main");
+
+const result =
+    document.getElementById("result");
+
+const zone =
+    document.getElementById("buttonZone");
+
+const timeElement =
+    document.getElementById("time");
+
+const signature =
+    document.getElementById("signature");
+
+const documentDate =
+    document.getElementById("documentDate");
+
+const finalStamp =
+    document.getElementById("finalStamp");
+
+
+/* ==========================================
+   СОСТОЯНИЕ
+========================================== */
+
+let finished = false;
+
+let seconds = 30;
+
+
+/* ==========================================
+   ПОЛУЧЕНИЕ ДАТЫ
+========================================== */
+
+function getDate() {
+
+    const now = new Date();
+
+    return now.toLocaleDateString(
+        "ru-RU",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+}
+
+
+/* ==========================================
+   ПОЛУЧЕНИЕ ВРЕМЕНИ
+========================================== */
+
+function getTime() {
+
+    const now = new Date();
+
+    return now.toLocaleTimeString(
+        "ru-RU",
+        {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }
+    );
+}
+
+
+/* ==========================================
+   ПОДТВЕРЖДЕНИЕ
+========================================== */
+
+function confirmDocument() {
+
+    if (finished) {
+        return;
+    }
+
+    finished = true;
+
+    clearInterval(timer);
+
+    agree.disabled = true;
+
+    cancel.style.pointerEvents = "none";
+
+
+    /*
+       Сначала запускаем подпись.
+    */
+
+    signature.classList.add("signing");
+
+
+    /*
+       Затем печатаем дату
+       на первом листе.
+    */
+
+    setTimeout(() => {
+
+        documentDate.textContent =
+            getDate();
+
+        documentDate.classList.add(
+            "date-writing"
+        );
+
+    }, 700);
+
+
+    /*
+       После завершения подписи
+       переходим на второй лист.
+    */
+
+    setTimeout(() => {
+
+        const now = new Date();
+
+        const date =
+            now.toLocaleDateString(
+                "ru-RU",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+        const time =
+            now.toLocaleTimeString(
+                "ru-RU",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            );
+
+
+        document.getElementById(
+            "realDate"
+        ).textContent = date;
+
+
+        document.getElementById(
+            "realTime"
+        ).textContent = time;
+
+
+        /*
+           Первый лист исчезает.
+        */
+
+        main.style.display = "none";
+
+        result.style.display = "block";
+
+
+        /*
+           Печать появляется
+           после небольшой задержки.
+        */
+
+        setTimeout(() => {
+
+            finalStamp.classList.add(
+                "show-stamp"
+            );
+
+        }, 250);
+
+    }, 2400);
+
+}
+
+
+/* ==========================================
+   КНОПКА
+========================================== */
+
+agree.addEventListener(
+    "click",
+    confirmDocument
+);
+
+
+/* ==========================================
+   ТАЙМЕР 30 СЕКУНД
+========================================== */
+
+timeElement.textContent = seconds;
+
+
+const timer = setInterval(() => {
+
+    if (finished) {
+
+        clearInterval(timer);
+
+        return;
+    }
+
+
+    seconds--;
+
+    timeElement.textContent =
+        seconds;
+
+
+    if (seconds <= 0) {
+
+        clearInterval(timer);
+
+        timeElement.textContent = "0";
+
+        /*
+           Автоматическое действие.
+        */
+
+        confirmDocument();
+
+    }
+
+}, 1000);
+
+
+/* ==========================================
+   УБЕГАЮЩАЯ КНОПКА
+========================================== */
+
+function moveButton() {
+
+    if (finished) {
+        return;
+    }
+
+
+    const rect =
+        zone.getBoundingClientRect();
+
+    const width =
+        cancel.offsetWidth;
+
+    const height =
+        cancel.offsetHeight;
+
+    const padding = 4;
+
+
+    const maxX =
+        Math.max(
+            1,
+            rect.width -
+            width -
+            padding
+        );
+
+
+    const maxY =
+        Math.max(
+            1,
+            rect.height -
+            height -
+            padding
+        );
+
+
+    const x =
+        padding +
+        Math.random() * maxX;
+
+    const y =
+        padding +
+        Math.random() * maxY;
+
+
+    cancel.style.left =
+        x + "px";
+
+    cancel.style.top =
+        y + "px";
+
+
+    const rotation =
+        Math.random() * 20 - 10;
+
+
+    cancel.style.transform =
+        `rotate(${rotation}deg)`;
+}
+
+
+/* ==========================================
+   ПРИБЛИЖЕНИЕ К КНОПКЕ
+========================================== */
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        if (finished) {
+            return;
+        }
+
+
+        const rect =
+            cancel.getBoundingClientRect();
+
+
+        const centerX =
+            rect.left +
+            rect.width / 2;
+
+
+        const centerY =
+            rect.top +
+            rect.height / 2;
+
+
+        const distance =
+            Math.hypot(
+                event.clientX - centerX,
+                event.clientY - centerY
+            );
+
+
+        if (distance < 110) {
+
+            moveButton();
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА
+========================================== */
+
+cancel.addEventListener(
+    "mouseenter",
+    moveButton
+);
+
+cancel.addEventListener(
+    "mousedown",
+    event => {
+
+        event.preventDefault();
+
+        moveButton();
+
+    }
+);
+
+cancel.addEventListener(
+    "touchstart",
+    event => {
+
+        event.preventDefault();
+
+        moveButton();
+
+    }
+);
+
+
+/* ==========================================
+   RESIZE
+========================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (!finished) {
+            moveButton();
+        }
+
+    }
+);
+
+
+/* ==========================================
+   НАЧАЛЬНОЕ ПОЛОЖЕНИЕ
+========================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(() => {
+
+            const rect =
+                zone.getBoundingClientRect();
+
+
+            cancel.style.left =
+                (
+                    rect.width / 2 + 70
+                ) + "px";
+
+
+            cancel.style.top =
+                "10px";
+
+        }, 100);
+
+    }
+);
+
+</script>
+
+</body>
+</html>
